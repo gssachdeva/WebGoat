@@ -35,6 +35,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StartWebGoat {
 
     public static void main(String[] args) {
-        SpringApplication.run(WebGoat.class, args)
+        SpringApplication.run(WebGoat.class, args);
     }
 }
