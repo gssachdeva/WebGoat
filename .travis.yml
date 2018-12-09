@@ -7,6 +7,7 @@ install: "/bin/true"
 script:
 - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
 - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
+- echo "1 GSS Inside script tag"
 - if [ ! -z "${TRAVIS_TAG}" ]; then mvn versions:set -DnewVersion=${TRAVIS_TAG:1}; fi
 - mvn clean install -q
 cache:
@@ -20,6 +21,7 @@ before_deploy:
   - cp -fa $WEBGOAT_SERVER_TARGET_DIR/*.jar $WEBGOAT_ARTIFACTS_FOLDER/
   - cp -fa $WEBWOLF_TARGET_DIR/*.jar $WEBGOAT_ARTIFACTS_FOLDER/
   - echo "Contents of artifacts folder:"
+  - echo "2 GSS Inside before deploy"
   - ls $WEBGOAT_ARTIFACTS_FOLDER
 deploy:
   - provider: script
@@ -28,6 +30,7 @@ deploy:
     on:
       repo: WebGoat/WebGoat
       tags: true
+  - echo "3 GSS Inside deploy - provider script"
   - provider: releases
     skip_cleanup: true
     overwrite: true
@@ -39,6 +42,7 @@ deploy:
     on:
       repo: WebGoat/WebGoat
       tags: true
+  - echo "4 GSS Inside deploy - provider releases"
 env:
   global:
   #Docker login
