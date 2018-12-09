@@ -9,6 +9,7 @@ script:
 - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
 - if [ ! -z "${TRAVIS_TAG}" ]; then mvn versions:set -DnewVersion=${TRAVIS_TAG:1}; fi
 - mvn clean install -q
+ - echo "1 GSS Inside script"
 cache:
   directories:
   - "$HOME/.m2"
