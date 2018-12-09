@@ -29,7 +29,6 @@ deploy:
     on:
       repo: WebGoat/WebGoat
       tags: true
-  - echo "3 GSS Inside deploy - provider script"
   - provider: releases
     skip_cleanup: true
     overwrite: true
@@ -41,7 +40,6 @@ deploy:
     on:
       repo: WebGoat/WebGoat
       tags: true
-  - echo "4 GSS Inside deploy - provider releases"
 env:
   global:
   #Docker login
