@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "GSS Inside script deploy-webgoat.sh"
+
 docker login -u $DOCKER_USER -p $DOCKER_PASS
 export REPO=webgoat/webgoat-8.0
 
