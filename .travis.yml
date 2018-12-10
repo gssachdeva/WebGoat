@@ -12,6 +12,7 @@ script:
 - echo "1 GSS Inside script"
 after_script:
 - echo "2 GSS Inside after_script"
+- ls 
 cache:
   directories:
   - "$HOME/.m2"
