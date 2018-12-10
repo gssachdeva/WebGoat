@@ -10,6 +10,7 @@ script:
 - if [ ! -z "${TRAVIS_TAG}" ]; then mvn versions:set -DnewVersion=${TRAVIS_TAG:1}; fi
 - mvn clean install -e -q
 - echo "1 GSS Inside script"
+- ls
 after_script:
 - echo "2 GSS Inside after_script"
 - ls 
