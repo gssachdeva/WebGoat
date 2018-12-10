@@ -15,9 +15,8 @@ script:
 - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
 - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
 - if [ ! -z "${TRAVIS_TAG}" ]; then mvn versions:set -DnewVersion=${TRAVIS_TAG:1}; fi
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
-- mvn clean install -e -q
-- echo "1 GSS Inside script"
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar install -e
+- echo "1 GSS Finished script"
 cache:
   directories:
   - "$HOME/.m2"
@@ -30,7 +29,6 @@ before_deploy:
   - cp -fa $WEBGOAT_SERVER_TARGET_DIR/*.jar $WEBGOAT_ARTIFACTS_FOLDER/
   - cp -fa $WEBWOLF_TARGET_DIR/*.jar $WEBGOAT_ARTIFACTS_FOLDER/
   - echo "Contents of artifacts folder:"
-  - echo "2 GSS Inside before deploy"
   - ls $WEBGOAT_ARTIFACTS_FOLDER
 deploy:
   - provider: script
