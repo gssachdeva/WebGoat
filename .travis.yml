@@ -24,7 +24,6 @@ before_deploy:
   - echo "2 GSS Inside before deploy"
   - ls $WEBGOAT_ARTIFACTS_FOLDER
 deploy:
-  - echo "2 GSS Inside deploy"
   - provider: script
     skip_cleanup: true
     script: bash scripts/deploy-webgoat.sh
