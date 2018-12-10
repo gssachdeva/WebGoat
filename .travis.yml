@@ -11,6 +11,7 @@ script:
 - mvn clean install -e -q
 - echo "1 GSS Inside script"
 - find . -name findbugs -print
+- ls ./webgoat-container/target/findbugs
 after_script:
 - echo "2 GSS Inside after_script"
 - ls 
