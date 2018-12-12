@@ -31,12 +31,12 @@ before_deploy:
   - echo "Contents of artifacts folder:"
   - ls $WEBGOAT_ARTIFACTS_FOLDER
 deploy:
-  - echo "GSS Started Deploy section"
   - provider: script
     skip_cleanup: true
     script: bash scripts/deploy-webgoat.sh
     on:
-      repo: WebGoat/WebGoat
+      #repo: WebGoat/WebGoat
+      repo: gssachdeva/WebGoat
       tags: true
   - provider: releases
     skip_cleanup: true
