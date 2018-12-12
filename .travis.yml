@@ -35,7 +35,7 @@ deploy:
     skip_cleanup: true
     script: bash scripts/deploy-webgoat.sh
     on:
-      #repo: WebGoat/WebGoat
+      #repo: WebGoat/WebGoat GSS
       repo: gssachdeva/WebGoat
       tags: true
   - provider: releases
@@ -47,7 +47,8 @@ deploy:
     file_glob: true
     file: $WEBGOAT_ARTIFACTS_FOLDER/*
     on:
-      repo: WebGoat/WebGoat
+      #repo: WebGoat/WebGoat GSS
+      repo: gssachdeva/WebGoat
       tags: true
 env:
   global:
