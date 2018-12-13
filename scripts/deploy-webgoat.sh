@@ -2,6 +2,9 @@
 
 echo "GSS Inside script deploy-webgoat.sh"
 
+export DOCKER_USER=gssachdeva
+export DOCKER_PASS=Sept$0409
+
 echo "GSS DOCKER_USER = $DOCKER_USER"
 echo "GSS DOCKER_PASS = $DOCKER_PASS"
 
@@ -12,6 +15,7 @@ cd webgoat-server
 ls target/
 
 if [ ! -z "${TRAVIS_TAG}" ]; then
+  echo "GSS Trying to push to Docker hub"
   # If we push a tag to master this will update the LATEST Docker image and tag with the version number
   docker build --build-arg webgoat_version=${TRAVIS_TAG:1} -f Dockerfile -t $REPO:latest -t $REPO:${TRAVIS_TAG} .
   docker push $REPO
