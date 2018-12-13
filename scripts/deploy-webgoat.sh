@@ -3,7 +3,7 @@
 echo "GSS Inside script deploy-webgoat.sh"
 
 export DOCKER_USER=gssachdeva
-export DOCKER_PASS=Sept$0409
+export DOCKER_PASS=Sept\$0409
 
 echo "GSS DOCKER_USER = $DOCKER_USER"
 echo "GSS DOCKER_PASS = $DOCKER_PASS"
