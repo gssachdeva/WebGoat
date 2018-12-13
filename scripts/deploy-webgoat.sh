@@ -35,7 +35,8 @@ else
 fi
 
 
-export REPO=webgoat/webwolf
+#export REPO=webgoat/webwolf
+export REPO=gssachdeva/webwolf
 cd ..
 cd webwolf
 ls target/
