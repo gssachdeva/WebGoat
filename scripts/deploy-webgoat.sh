@@ -18,7 +18,10 @@ if [ ! -z "${TRAVIS_TAG}" ]; then
   echo "GSS Trying to push to Docker hub"
   # If we push a tag to master this will update the LATEST Docker image and tag with the version number
   docker build --build-arg webgoat_version=${TRAVIS_TAG:1} -f Dockerfile -t $REPO:latest -t $REPO:${TRAVIS_TAG} .
+  echo "GSS TRAVIS TAG = $TRAVIS_TAG"
+  echo "GSS REPO = $REPO"
   docker push $REPO
+  echo "GSS After docker push"
 #elif [ ! -z "${TRAVIS_TAG}" ]; then
 #  # Creating a tag build we push it to Docker with that tag
 #  docker build --build-arg webgoat_version=${TRAVIS_TAG:1} -f Dockerfile -t $REPO:${TRAVIS_TAG} -t $REPO:latest .
