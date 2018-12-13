@@ -9,7 +9,8 @@ echo "GSS DOCKER_USER = $DOCKER_USER"
 echo "GSS DOCKER_PASS = $DOCKER_PASS"
 
 docker login -u $DOCKER_USER -p $DOCKER_PASS
-export REPO=webgoat/webgoat-8.0
+#export REPO=webgoat/webgoat-8.0
+export REPO=gssachdeva/webgoat
 
 cd webgoat-server
 ls target/
