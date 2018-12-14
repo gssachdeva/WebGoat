@@ -38,19 +38,19 @@ deploy:
       #repo: WebGoat/WebGoat GSS
       repo: gssachdeva/WebGoat
       tags: true
-  - provider: releases
-    skip_cleanup: true
-    overwrite: true
-    api_key:
+  #- provider: releases
+  #  skip_cleanup: true
+  #  overwrite: true
+  #  api_key:
       #api-key from webgoat-github user
       #secure: pJOLBnl6427PcVg/tVy/qB18JC7b8cKpffau+IP0pjdSt7KUfBdBY3QuJ7mrM65zRoVILzggLckaew2PlRmYQRdumyWlyRn44XiJ9KO4n6Bsufbz+ictB4ggtozpp9+I9IIUh1TmqypL9lhkX2ONM9dSHmyblYpAAgMuYSK8FYc=
-      secure: 7fb84d371e9f1618fbea92553d362210122ace4d
-    file_glob: true
-    file: $WEBGOAT_ARTIFACTS_FOLDER/*
-    on:
+  #   secure: 7fb84d371e9f1618fbea92553d362210122ace4d
+  #  file_glob: true
+  #  file: $WEBGOAT_ARTIFACTS_FOLDER/*
+  #  on:
       #repo: WebGoat/WebGoat GSS
-      repo: gssachdeva/WebGoat
-      tags: true
+  #    repo: gssachdeva/WebGoat
+  #    tags: true
 env:
   global:
   #Docker login
