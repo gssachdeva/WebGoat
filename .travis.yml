@@ -56,10 +56,11 @@ after_deploy:
   - echo "GSS After webgoat pull"
   - docker run -p 8080:8080 gssachdeva/webgoat:latest &
   - echo "GSS After run webgoat"
+  - docker ps -a
   - docker pull owasp/zap2docker-stable
   - echo "GSS After zap2docker pull"
-  #- docker run -t owasp/zap2docker-stable zap-baseline.py -t http://127.0.0.1:8080/
-  - docker run -t owasp/zap2docker-stable zap-baseline.py -t http://www.yahoo.com
+  - docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8080/WebGoat
+  #- docker run -t owasp/zap2docker-stable zap-baseline.py -t http://www.yahoo.com
   - echo "GSS After zap2docker run"
   - docker ps -a
   - docker kill 
