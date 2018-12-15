@@ -63,8 +63,10 @@ after_deploy:
   #- docker run -t owasp/zap2docker-stable zap-baseline.py -t http://www.yahoo.com
   - echo "GSS After zap2docker run"
   - docker ps -a
-  - docker inspect naughty_sammet | grep IPAddress
-  - docker inspect reverent_leavitt | grep IPAddress
+  - docker inspect 
+        $(docker ps |grep gssachdeva/webgoat 
+        | awk '{print $1}')
+        | grep IPAddress
   - docker kill 
         $(docker ps |grep gssachdeva/webgoat 
         | awk '{print $1}')
