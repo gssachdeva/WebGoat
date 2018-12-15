@@ -64,6 +64,7 @@ after_deploy:
   - echo "GSS After zap2docker run"
   - docker ps -a
   - docker inspect naughty_sammet | grep IPAddress
+  - docker inspect reverent_leavitt | grep IPAddress
   - docker kill 
         $(docker ps |grep gssachdeva/webgoat 
         | awk '{print $1}')
