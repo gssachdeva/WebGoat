@@ -51,6 +51,20 @@ deploy:
       #repo: WebGoat/WebGoat GSS
   #    repo: gssachdeva/WebGoat
   #    tags: true
+after_deploy:
+  - docker pull gssachdeva/webgoat:latest
+  - echo "GSS After webgoat pull"
+  - docker run -p 8080:8080 gssachdeva/webgoat:latest
+  - echo "GSS After run webgoat"
+  - docker pull owasp/zap2docker-weekly
+  - echo "GSS After zap2docker pull"
+  - docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://127.0.0.1:8080/
+  - echo "GSS After zap2docker run"
+  - docker ps -a
+  - docker kill 
+        $(docker ps |grep gssachdeva/webgoat 
+        | awk '{print $1}')
+  - echo "GSS Kill Docker ps"
 env:
   global:
   #Docker login
