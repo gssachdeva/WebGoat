@@ -54,7 +54,7 @@ deploy:
 after_deploy:
   - docker pull gssachdeva/webgoat:latest
   - echo "GSS After webgoat pull"
-  - docker run -p 8080:8080 gssachdeva/webgoat:latest
+  - docker run -p 8080:8080 gssachdeva/webgoat:latest &
   - echo "GSS After run webgoat"
   - docker pull owasp/zap2docker-weekly
   - echo "GSS After zap2docker pull"
