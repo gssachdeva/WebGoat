@@ -16,7 +16,6 @@ script:
 - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
 - if [ ! -z "${TRAVIS_TAG}" ]; then mvn versions:set -DnewVersion=${TRAVIS_TAG:1}; fi
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar install -e
-- echo "1 GSS Finished script"
 cache:
   directories:
   - "$HOME/.m2"
@@ -35,43 +34,28 @@ deploy:
     skip_cleanup: true
     script: bash scripts/deploy-webgoat.sh
     on:
-      #repo: WebGoat/WebGoat GSS
-      repo: gssachdeva/WebGoat
+       repo: gssachdeva/WebGoat
       tags: true
-  #- provider: releases
-  #  skip_cleanup: true
-  #  overwrite: true
-  #  api_key:
-      #api-key from webgoat-github user
-      #secure: pJOLBnl6427PcVg/tVy/qB18JC7b8cKpffau+IP0pjdSt7KUfBdBY3QuJ7mrM65zRoVILzggLckaew2PlRmYQRdumyWlyRn44XiJ9KO4n6Bsufbz+ictB4ggtozpp9+I9IIUh1TmqypL9lhkX2ONM9dSHmyblYpAAgMuYSK8FYc=
-  #   secure: 7fb84d371e9f1618fbea92553d362210122ace4d
-  #  file_glob: true
-  #  file: $WEBGOAT_ARTIFACTS_FOLDER/*
-  #  on:
-      #repo: WebGoat/WebGoat GSS
-  #    repo: gssachdeva/WebGoat
-  #    tags: true
-after_deploy:
-  - docker pull gssachdeva/webgoat:latest
-  - echo "GSS After webgoat pull"
-  - docker run -p 8080:8080 gssachdeva/webgoat:latest &
-  - echo "GSS After run webgoat"
-  - docker ps -a
-  - docker pull owasp/zap2docker-stable
-  - echo "GSS After zap2docker pull"
-  - echo "Hostname = " hostname
-  #- docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8080/WebGoat
-  - docker run -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.2:8080/WebGoat
-  - echo "GSS After zap2docker run"
-  - docker ps -a
-  - docker inspect 
-        $(docker ps |grep gssachdeva/webgoat 
-        | awk '{print $1}')
-        | grep IPAddress
-  - docker kill 
-        $(docker ps |grep gssachdeva/webgoat 
-        | awk '{print $1}')
-  - echo "GSS Kill Docker ps"
+#after_deploy:
+#  - docker pull gssachdeva/webgoat:latest
+#  - echo "GSS After webgoat pull"
+#  - docker run -p 8080:8080 gssachdeva/webgoat:latest &
+#  - echo "GSS After run webgoat"
+#  - docker ps -a
+#  - docker pull owasp/zap2docker-stable
+#  - echo "GSS After zap2docker pull"
+#  - echo "Hostname = " hostname
+#  - docker run -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.2:8080/WebGoat
+#  - echo "GSS After zap2docker run"
+#  - docker ps -a
+#  - docker inspect 
+#        $(docker ps |grep gssachdeva/webgoat 
+#        | awk '{print $1}')
+#        | grep IPAddress
+#  - docker kill 
+#        $(docker ps |grep gssachdeva/webgoat 
+#        | awk '{print $1}')
+#  - echo "GSS Kill Docker ps"
 env:
   global:
   #Docker login
