@@ -29,13 +29,13 @@ before_deploy:
   - cp -fa $WEBWOLF_TARGET_DIR/*.jar $WEBGOAT_ARTIFACTS_FOLDER/
   - echo "Contents of artifacts folder:"
   - ls $WEBGOAT_ARTIFACTS_FOLDER
-deploy:
-  - provider: script
-    skip_cleanup: true
-    script: bash scripts/deploy-webgoat.sh
-    on:
-      repo: gssachdeva/WebGoat
-      tags: true
+#deploy:
+#  - provider: script
+#    skip_cleanup: true
+#    script: bash scripts/deploy-webgoat.sh
+#    on:
+#      repo: gssachdeva/WebGoat
+#      tags: true
 #after_deploy:
 #  - docker pull gssachdeva/webgoat:latest
 #  - echo "GSS After webgoat pull"
