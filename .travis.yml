@@ -38,7 +38,7 @@ deploy:
       tags: true
 after_deploy:
   - docker pull gssachdeva/webgoat:latest
-  - docker run -p 8080:8080 gssachdeva/webgoat:latest &
+  - docker run -p 8080:8080 gssachdeva/webgoat:latest  &
   - docker ps -a
   - docker pull owasp/zap2docker-stable
   - docker run -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.2:8080/WebGoat
