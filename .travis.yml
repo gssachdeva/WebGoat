@@ -29,33 +29,27 @@ before_deploy:
   - cp -fa $WEBWOLF_TARGET_DIR/*.jar $WEBGOAT_ARTIFACTS_FOLDER/
   - echo "Contents of artifacts folder:"
   - ls $WEBGOAT_ARTIFACTS_FOLDER
-#deploy:
-#  - provider: script
-#    skip_cleanup: true
-#    script: bash scripts/deploy-webgoat.sh
-#    on:
-#      repo: gssachdeva/WebGoat
-#      tags: true
-#after_deploy:
-#  - docker pull gssachdeva/webgoat:latest
-#  - echo "GSS After webgoat pull"
-#  - docker run -p 8080:8080 gssachdeva/webgoat:latest &
-#  - echo "GSS After run webgoat"
-#  - docker ps -a
-#  - docker pull owasp/zap2docker-stable
-#  - echo "GSS After zap2docker pull"
-#  - echo "Hostname = " hostname
-#  - docker run -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.2:8080/WebGoat
-#  - echo "GSS After zap2docker run"
-#  - docker ps -a
-#  - docker inspect 
-#        $(docker ps |grep gssachdeva/webgoat 
-#        | awk '{print $1}')
-#        | grep IPAddress
-#  - docker kill 
-#        $(docker ps |grep gssachdeva/webgoat 
-#        | awk '{print $1}')
-#  - echo "GSS Kill Docker ps"
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: bash scripts/deploy-webgoat.sh
+    on:
+      repo: gssachdeva/WebGoat
+      tags: true
+after_deploy:
+  - docker pull gssachdeva/webgoat:latest
+  - docker run -p 8080:8080 gssachdeva/webgoat:latest &
+  - docker ps -a
+  - docker pull owasp/zap2docker-stable
+  - docker run -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.2:8080/WebGoat
+  - docker ps -a
+  - docker inspect 
+        $(docker ps |grep gssachdeva/webgoat 
+        | awk '{print $1}')
+        | grep IPAddress
+  - docker kill 
+        $(docker ps |grep gssachdeva/webgoat 
+        | awk '{print $1}')
 env:
   global:
   #Docker login
